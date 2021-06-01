@@ -1,0 +1,33 @@
+{"intents":[
+		{"tag": "greeting",
+		 "patterns": ["Hello", "Hi", "Hi there", "Hey", "Good morning", "Good evening", "Whats up"],
+		 "responses": ["Hi friend!", "Hello", "Hello, nice to see you", "Greetings!", "Good to see you" ]
+		},
+		{"tag": "name",
+		 "patterns": ["Who are you?", "What's your name?", "How should I call you?", "Do you have a name?"],
+		 "responses": [""]
+		},
+		{"tag": "hobby",
+		 "patterns": ["What do you like to do?", "What's your hobby?", "What do you do for fun?"],
+		 "responses": []
+		},
+		{"tag": "joke",
+		 "patterns": ["Tell a joke", "Say something funny", "Do you know any jokes?", "Can you tell a joke?"],
+		 "responses": ["Why don't scientist trust atoms?/n Because they make up everything.",
+		 			   "How do you drown a hipster?/n Throw him in the mainstream.",
+		 			   "What do you call a fake noodle?/n An impasta!",
+		 			   "Why did the hipster burn his mouth?/n He drank his coffee before it was cool.",
+		 			   "Want to hear a construction joke?... Oh nevermind, I'm still working on that one.",
+		 			   "Why did the gym close down?/n It just didn't work out.",
+		 			   "Two artists had an art contest. It ended in a draw.",
+		 			   "What do you call a boomerang that doesn't come back?/n A stick.",
+		 			   "Can February march?/n No, but April may.",
+		 			   "How do trees get online?/n They just log in!"]
+		},
+		{"tag": "goodbye",
+		 "patterns": ["Bye", "Shut up", "Quit", "See you later", "Goodbye"],
+		 "responses": ["Bye!", "Have a nice day!", "Bye! See you later.", "It was nice talking to you.", "Goodbye!"
+		}
+	
+]
+}
