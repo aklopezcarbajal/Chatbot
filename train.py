@@ -1,6 +1,21 @@
 import json
 import nltk
+#nltk.download('punkt')
+import numpy as np
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
 
+def bag_of_words(text, words):
+	text_words = [stemmer.stem(w.lower()) for w in text]
+
+	bag = np.zeros(len(words))
+	for i, w in enumerate(words):
+		if w in text:
+			bag[i] = 1
+
+	return bag
+
+# Load data
 with open('intents.json', 'r') as file:
 	data = json.load(file)
 
@@ -16,3 +31,7 @@ for intent in data['intents']:
 		w = nltk.word_tokenize(pattern)
 		words.extend(w)
 		pairs.append((w,intent['tag']))
+
+words = [stemmer.stem(w.lower()) for w in words if w != '?']
+words = sorted(set(words))
+classes = sorted(classes)
