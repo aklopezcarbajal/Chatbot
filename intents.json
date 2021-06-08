@@ -34,6 +34,6 @@
 		},
 		{"tag": "goodbye",
 		 "patterns": ["Bye", "Shut up", "Quit", "See you later", "Goodbye"],
-		 "responses": ["Bye!", "Have a nice day!", "Bye! See you later.", "It was nice talking to you.", "Goodbye!"
+		 "responses": ["Bye!", "Have a nice day!", "Bye! See you later.", "It was nice talking to you.", "Goodbye!"]
 		}	
 ]}
