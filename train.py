@@ -35,3 +35,15 @@ for intent in data['intents']:
 words = [stemmer.stem(w.lower()) for w in words if w != '?']
 words = sorted(set(words))
 classes = sorted(classes)
+
+# Training data
+X, y = [], []
+
+for (pattern, tag) in pairs:
+	bag = bag_of_words(pattern, words)
+	label = classes.index(tag)
+	X.append(bag)
+	y.append(label)
+
+X = np.array(X)
+y = np.array(y)
