@@ -2,6 +2,9 @@ import json
 import nltk
 #nltk.download('punkt')
 import numpy as np
+import torch
+import torch.nn as nn
+from model import Net
 from nltk.stem import PorterStemmer
 stemmer = PorterStemmer()
 
@@ -47,3 +50,13 @@ for (pattern, tag) in pairs:
 
 X = np.array(X)
 y = np.array(y)
+
+
+# Training model
+device = torch.device('cpu')
+
+input_size = len(words)
+layer_size = 5
+output_size = len(classes)
+
+net = Net(input_size, layer_size, output_size)
