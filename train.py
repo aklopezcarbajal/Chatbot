@@ -4,7 +4,9 @@ import nltk
 import numpy as np
 import torch
 import torch.nn as nn
+from torch.utils.data import DataLoader
 from model import Net
+from dataset import ChatbotDataset
 from nltk.stem import PorterStemmer
 stemmer = PorterStemmer()
 
@@ -51,6 +53,8 @@ for (pattern, tag) in pairs:
 X = np.array(X)
 y = np.array(y)
 
+dataset = ChatbotDataset(X,y)
+train_dataloader = DataLoader(dataset,batch_size=10,shuffle=True)
 
 # Training model
 device = torch.device('cpu')
@@ -60,3 +64,8 @@ layer_size = 5
 output_size = len(classes)
 
 net = Net(input_size, layer_size, output_size)
+
+# Loss function and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(net.parameters(),lr=0.001)
+
