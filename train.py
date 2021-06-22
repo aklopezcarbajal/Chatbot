@@ -25,12 +25,12 @@ with open('intents.json', 'r') as file:
 	data = json.load(file)
 
 words = []
-classes = []
+labels = []
 pairs = []
 
 for intent in data['intents']:
-	if intent['tag'] not in classes:
-		classes.append(intent['tag'])
+	if intent['tag'] not in labels:
+		labels.append(intent['tag'])
 
 	for pattern in intent['patterns']:
 		w = nltk.word_tokenize(pattern)
@@ -39,14 +39,14 @@ for intent in data['intents']:
 
 words = [stemmer.stem(w.lower()) for w in words if w != '?']
 words = sorted(set(words))
-classes = sorted(classes)
+labels = sorted(labels)
 
 # Training data
 X, y = [], []
 
 for (pattern, tag) in pairs:
 	bag = bag_of_words(pattern, words)
-	label = classes.index(tag)
+	label = labels.index(tag)
 	X.append(bag)
 	y.append(label)
 
@@ -61,7 +61,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else'cpu')
 
 input_size = len(words)
 layer_size = 5
-output_size = len(classes)
+output_size = len(labels)
 
 net = Net(input_size, layer_size, output_size)
 net.to(device)
@@ -90,4 +90,10 @@ for epoch in range(epochs):
 print('Finished Training')
 
 # Save trained model
-model_dict = {}
+model_dict = {
+			'model_state': net.state_dict(),
+			'dimensions': [input_size, layer_size, output_size],
+			'data': [words, labels]
+}
+
+torch.save(model_dict, 'chatmodel.pth')
