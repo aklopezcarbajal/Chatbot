@@ -6,19 +6,9 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from model import Net
-from dataset import ChatbotDataset
+from dataset import ChatbotDataset, bag_of_words
 from nltk.stem import PorterStemmer
 stemmer = PorterStemmer()
-
-def bag_of_words(text, words):
-	text_words = [stemmer.stem(w.lower()) for w in text]
-
-	bag = np.zeros(len(words), dtype=np.float32)
-	for i, w in enumerate(words):
-		if w in text:
-			bag[i] = 1
-
-	return bag
 
 # Load data
 with open('intents.json', 'r') as file:
