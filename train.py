@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from model import Net
-from dataset import ChatbotDataset, bag_of_words
+from utils import ChatbotDataset, bag_of_words
 from nltk.stem import PorterStemmer
 stemmer = PorterStemmer()
 
