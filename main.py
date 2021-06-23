@@ -2,9 +2,10 @@ import torch
 import nltk
 #nltk.download('punkt')
 from model import Net
-from dataset import bag_of_words
+from utils import bag_of_words
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else'cpu')
+print('[INF] Device:', device)
 
 # Load model
 model_dict = torch.load('chatmodel.pth')
@@ -25,3 +26,10 @@ while True:
 		break
 
 	bag = bag_of_words(nltk.word_tokenize(string),words)
+	t = torch.from_numpy(bag) # bag of words to tensor
+	# Feed input to model
+	output = net(t)
+	# Guess intent
+	val, ind = torch.max(output, dim=0)
+	tag = labels[ind.item()]
+	# Choose a random response
