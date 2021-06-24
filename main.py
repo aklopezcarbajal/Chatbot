@@ -3,9 +3,15 @@ import nltk
 #nltk.download('punkt')
 from model import Net
 from utils import bag_of_words
+import json
+import random
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else'cpu')
 print('[INF] Device:', device)
+
+# Load intents file
+with open('intents.json', 'r') as f:
+	file = json.load(f)
 
 # Load model
 model_dict = torch.load('chatmodel.pth')
@@ -33,3 +39,7 @@ while True:
 	val, ind = torch.max(output, dim=0)
 	tag = labels[ind.item()]
 	# Choose a random response
+	for intent in file['intents']:
+		if tag == intent['tag']:
+			responses = intent['responses']
+			print('Bot:', random.choice(responses))
