@@ -1,14 +1,14 @@
 {"intents":[
 		{"tag": "greeting",
-		 "patterns": ["Hello", "Hi", "Hi there", "Hey", "Good morning", "Good evening", "Whats up"],
+		 "patterns": ["Hello", "Hi", "Hi there", "Hey", "Whats up"],
 		 "responses": ["Hi friend!", "Hello", "Hello, nice to see you.", "Greetings!", "Good to see you." ]
 		},
 		{"tag": "name",
-		 "patterns": ["Who are you?", "What's your name?", "How should I call you?", "Do you have a name?"],
+		 "patterns": ["Who are you?", "What's your name?", "What should I call you?"],
 		 "responses": ["I am Jarvis.", "My name is Jarvis.", "Call me Jarvis.", "Jarvis."]
 		},
 		{"tag": "hobby",
-		 "patterns": ["What do you like to do?", "What's your hobby?", "What do you do for fun?"],
+		 "patterns": ["What do you like to do?", "Do you have a hobby?", "What do you do for fun?"],
 		 "responses": ["I play go.", "I like chess.", "I spy from your webcam.", "Netflix and chill."]
 		},
 		{"tag": "joke",
@@ -33,7 +33,7 @@
 		 			   "You have cute elbows. For real."]
 		},
 		{"tag": "goodbye",
-		 "patterns": ["Bye", "Shut up", "Quit", "See you later", "Goodbye"],
+		 "patterns": ["Bye", "Shut up", "See you later", "Goodbye", "Bye bye!"],
 		 "responses": ["Bye!", "Have a nice day!", "Bye! See you later.", "It was nice talking to you.", "Goodbye!"]
 		}	
 ]}
