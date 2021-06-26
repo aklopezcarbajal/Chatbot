@@ -50,7 +50,7 @@ train_dataloader = DataLoader(dataset,batch_size=8,shuffle=True)
 device = torch.device('cuda:0' if torch.cuda.is_available() else'cpu')
 
 input_size = len(words)
-layer_size = 5
+layer_size = 16
 output_size = len(labels)
 
 net = Net(input_size, layer_size, output_size)
@@ -60,7 +60,7 @@ net.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(net.parameters(),lr=0.001)
 
-epochs = 500
+epochs = 1000
 
 for epoch in range(epochs):
 	for (pattern, tag) in train_dataloader:
@@ -74,7 +74,7 @@ for epoch in range(epochs):
 		loss = criterion(output, tag)
 		loss.backward()
 		optimizer.step()
-	if (epoch+1) % 10 == 0:
+	if (epoch+1) % 100 == 0:
 		print('[epoch',epoch+1,'] loss: %.3f' %loss.item())
 
 print('Finished Training')
