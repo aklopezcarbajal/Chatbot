@@ -25,9 +25,12 @@ net.load_state_dict(model_state)
 net.eval()
 
 words, labels = model_dict['data']
+softmax = torch.nn.Softmax(dim=0)
+
+print(words)
 
 while True:
-	string = input('You:')
+	string = input('You: ')
 	if string.lower() == 'quit':
 		break
 
@@ -38,8 +41,14 @@ while True:
 	# Guess intent
 	val, ind = torch.max(output, dim=0)
 	tag = labels[ind.item()]
-	# Choose a random response
-	for intent in file['intents']:
-		if tag == intent['tag']:
-			responses = intent['responses']
-			print('Bot:', random.choice(responses))
+
+	p = softmax(output)
+	# If the likelihood is greater than 0.5
+	if p[ind.item()] > 0.5:
+		# Choose a random response
+		for intent in file['intents']:
+			if tag == intent['tag']:
+				responses = intent['responses']
+				print('Bot:', random.choice(responses))
+	else:
+		print('Bot: Sorry, I do not understand...')
