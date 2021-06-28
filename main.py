@@ -27,8 +27,6 @@ net.eval()
 words, labels = model_dict['data']
 softmax = torch.nn.Softmax(dim=0)
 
-print(words)
-
 while True:
 	string = input('You: ')
 	if string.lower() == 'quit':
