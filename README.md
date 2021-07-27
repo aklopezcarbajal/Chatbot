@@ -32,7 +32,8 @@ If you wish to customize the bot, modify the file `intents.json`
 {"intents":[
 	{"tag": "greeting",
 		 "patterns": ["Hello", "Hi", "Hi there", "Hey", "Whats up"],
-		 "responses": ["Hi friend!", "Hello", "Hello, nice to see you.", "Greetings!", "Good to see you." ]
+		 "responses": ["Hi friend!", "Hello", "Hello, nice to see you.", 
+		 	       "Greetings!", "Good to see you." ]
 	},
   ...
 }
