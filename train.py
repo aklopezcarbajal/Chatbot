@@ -44,28 +44,27 @@ X = np.array(X)
 y = np.array(y)
 
 dataset = ChatbotDataset(X,y)
-train_dataloader = DataLoader(dataset,batch_size=8,shuffle=True)
+train_dataloader = DataLoader(dataset,batch_size=16,shuffle=True)
 
 # Training model
-device = torch.device('cuda:0' if torch.cuda.is_available() else'cpu')
+device = torch.device('cpu')
+print('[INF] Device:', device)
 
 input_size = len(words)
-layer_size = 16
+layer_size = 8
 output_size = len(labels)
 
 net = Net(input_size, layer_size, output_size)
-net.to(device)
 
 # Loss function and optimizer
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(net.parameters(),lr=0.001)
+optimizer = torch.optim.Adam(net.parameters(),lr=0.01)
 
-epochs = 1000
+epochs = 50
 
 for epoch in range(epochs):
 	for (pattern, tag) in train_dataloader:
-		pattern = pattern.to(device)
-		tag = tag.to(dtype=torch.long).to(device)
+		tag = tag.to(dtype=torch.long)
 
 		optimizer.zero_grad()
 
@@ -74,7 +73,7 @@ for epoch in range(epochs):
 		loss = criterion(output, tag)
 		loss.backward()
 		optimizer.step()
-	if (epoch+1) % 100 == 0:
+	if (epoch+1) % 5 == 0:
 		print('[epoch',epoch+1,'] loss: %.3f' %loss.item())
 
 print('Finished Training')
